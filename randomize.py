@@ -4,6 +4,9 @@ import dm_control.mujoco as mujoco
 from dm_control import suite
 
 class Discritize_Wrapper():
+    _TEXTUREPATH = [
+        ["/home/christopherkang/.mujoco/mujoco200_linux/model/carpet.png", "/home/christopherkang/.mujoco/mujoco200_linux/model/marble.png"]
+        ]
     
     def __init__(self, continuous_env, actions_per_control):
         self.actions_per_control=actions_per_control
@@ -19,7 +22,7 @@ class Discritize_Wrapper():
         
     def reset(self):
         self.continuous_env.reset()
-        self.continuous_env.physics.reload_from_xml_string(self.create_random_model("point_mass.xml", [["/home/christopherkang/.mujoco/mujoco200_linux/model/carpet.png", "/home/christopherkang/.mujoco/mujoco200_linux/model/marble.png"]]))
+        self.continuous_env.physics.reload_from_xml_string(self.create_random_model("point_mass.xml", self._TEXTUREPATH))
         return self.continuous_env.physics.render(height=240, width=240, camera_id=0)
         
     def step(self, action):
