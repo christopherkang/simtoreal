@@ -1,1 +1,5 @@
 .vscode/
+prev_run/
+*.pth
+__pycache__/
+archive/
